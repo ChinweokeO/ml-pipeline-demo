@@ -19,10 +19,10 @@ def clean_data(df, numeric_columns, categorical_columns):
     """Clean a dataframe by handling missing values and encoding categoricals."""
     df = df.copy()
 
-    # Bug: filling with 0 instead of median
+    # Bug fixed: filling with median
     for col in numeric_columns:
         if col in df.columns:
-            df[col] = df[col].fillna(0)  # this was df[col].median()
+            df[col] = df[col].fillna(df[col].median())  # this was df[col].median()
 
     for col in categorical_columns:
         if col in df.columns:
